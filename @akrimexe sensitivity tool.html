@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>FF Sensitivity PRO By @akrimexe  — Générateur Elite</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;600&display=swap');
+
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+
+:root {
+  --fire:   #ff4d00;
+  --amber:  #ffb800;
+  --gold:   #ffd060;
+  --ink:    #0b0c0f;
+  --panel:  #111318;
+  --card:   #161a21;
+  --border: rgba(255,100,0,0.18);
+  --border2:rgba(255,184,0,0.13);
+  --text:   #e8dcc8;
+  --muted:  rgba(232,220,200,0.45);
+  --dim:    rgba(232,220,200,0.22);
+  --glow-r: rgba(255,77,0,0.35);
+  --glow-a: rgba(255,184,0,0.25);
+}
+
+html { scroll-behavior:smooth; }
+
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  background: var(--ink);
+  color: var(--text);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ── ANIMATED BG ── */
+.bg-grid {
+  position:fixed; inset:0; z-index:0; pointer-events:none;
+  background-image:
+    linear-gradient(rgba(255,77,0,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,77,0,0.04) 1px, transparent 1px);
+  background-size: 48px 48px;
+  mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 40%, transparent 100%);
+}
+
+.bg-glow1 {
+  position:fixed; z-index:0; pointer-events:none;
+  width:600px; height:600px; border-radius:50%;
+  background: radial-gradient(circle, rgba(255,77,0,0.12) 0%, transparent 70%);
+  top:-150px; right:-100px;
+  animation: floatA 14s ease-in-out infinite alternate;
+}
+.bg-glow2 {
+  position:fixed; z-index:0; pointer-events:none;
+  width:500px; height:500px; border-radius:50%;
+  background: radial-gradient(circle, rgba(255,184,0,0.09) 0%, transparent 70%);
+  bottom:-100px; left:-80px;
+  animation: floatB 18s ease-in-out infinite alternate;
+}
+
+@keyframes floatA { 0%{transform:translate(0,0) scale(1)} 100%{transform:translate(30px,60px) scale(1.1)} }
+@keyframes floatB { 0%{transform:translate(0,0) scale(1)} 100%{transform:translate(-40px,-30px) scale(1.08)} }
+
+/* ── LAYOUT ── */
+.wrap {
+  position:relative; z-index:1;
+  max-width:860px; margin:0 auto;
+  padding:40px 20px 80px;
+}
+
+/* ── HEADER ── */
+.header {
+  text-align:center;
+  margin-bottom:48px;
+}
+
+.badge {
+  display:inline-flex; align-items:center; gap:8px;
+  background: rgba(255,77,0,0.10);
+  border: 1px solid rgba(255,77,0,0.30);
+  border-radius:40px;
+  padding:6px 18px;
+  font-family:'Rajdhani', sans-serif;
+  font-size:0.78rem; font-weight:600; letter-spacing:3px;
+  color: var(--fire);
+  text-transform:uppercase;
+  margin-bottom:20px;
+}
+.badge::before { content:''; width:6px; height:6px; border-radius:50%; background:var(--fire); box-shadow:0 0 8px var(--fire); animation:pulse 2s infinite; }
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+
+h1 {
+  font-family:'Rajdhani', sans-serif;
+  font-size: clamp(2.4rem, 6vw, 4rem);
+  font-weight:700;
+  line-height:1.0;
+  letter-spacing:-1px;
+  color:#fff;
+  margin-bottom:10px;
+}
+h1 span.fire-word {
+  background: linear-gradient(100deg, var(--fire) 0%, var(--amber) 50%, var(--gold) 100%);
+  -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+  background-clip:text;
+  display:inline-block;
+  filter:drop-shadow(0 0 20px rgba(255,100,0,0.45));
+}
+
+.tagline {
+  font-size:0.93rem; font-weight:300; letter-spacing:1.5px;
+  color:var(--muted);
+  margin-top:8px;
+  text-transform:uppercase;
+}
+
+/* ── DIVIDER ── */
+.divider {
+  width:100%; height:1px;
+  background:linear-gradient(90deg, transparent, rgba(255,77,0,0.4), rgba(255,184,0,0.3), transparent);
+  margin-bottom:36px;
+  border:none;
+}
+
+/* ── CARD ── */
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius:24px;
+  padding:32px 28px;
+  margin-bottom:24px;
+  position:relative;
+  overflow:hidden;
+  transition: border-color .3s;
+}
+.card::after {
+  content:'';
+  position:absolute; top:0; left:0; right:0; height:1px;
+  background:linear-gradient(90deg,transparent,rgba(255,120,0,0.6),transparent);
+}
+.card:hover { border-color:rgba(255,77,0,0.35); }
+
+/* ── SECTION LABEL ── */
+.section-label {
+  display:flex; align-items:center; gap:10px;
+  font-family:'Rajdhani', sans-serif;
+  font-size:0.72rem; font-weight:700; letter-spacing:3px;
+  color:var(--amber);
+  text-transform:uppercase;
+  margin-bottom:22px;
+}
+.section-label::after {
+  content:'';
+  flex:1; height:1px;
+  background:linear-gradient(90deg, rgba(255,184,0,0.25), transparent);
+}
+
+/* ── FORM ── */
+.form-grid {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:18px 20px;
+  margin-bottom:28px;
+}
+.form-group { display:flex; flex-direction:column; gap:7px; }
+.form-group.span2 { grid-column:1/-1; }
+
+.form-group label {
+  font-size:0.78rem; font-weight:600; letter-spacing:0.8px;
+  color:rgba(232,220,200,0.6);
+  text-transform:uppercase;
+  display:flex; align-items:center; gap:7px;
+}
+.form-group label em { font-style:normal; font-size:0.95rem; }
+
+.form-group input,
+.form-group select {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.09);
+  border-radius:12px;
+  padding:13px 16px;
+  font-size:0.97rem;
+  font-family:'Inter', sans-serif;
+  color:var(--text);
+  font-weight:400;
+  outline:none;
+  transition: border-color .25s, box-shadow .25s, background .25s;
+  appearance:none; -webkit-appearance:none;
+}
+.form-group input::placeholder { color:var(--dim); }
+.form-group input:focus,
+.form-group select:focus {
+  border-color: rgba(255,120,0,0.6);
+  box-shadow: 0 0 0 3px rgba(255,77,0,0.10), 0 0 20px rgba(255,100,0,0.08);
+  background: rgba(255,100,0,0.04);
+}
+.form-group select option { background:#1a1e26; color:var(--text); }
+
+/* Custom select arrow */
+.select-wrap { position:relative; }
+.select-wrap::after {
+  content:'▾';
+  position:absolute; right:14px; top:50%; transform:translateY(-50%);
+  color:var(--amber); font-size:1rem; pointer-events:none;
+}
+
+/* ── STYLE PICKER ── */
+.style-picker {
+  display:grid; grid-template-columns:1fr 1fr; gap:12px;
+}
+.style-btn {
+  border:1px solid rgba(255,255,255,0.09);
+  border-radius:14px;
+  background:rgba(255,255,255,0.03);
+  padding:16px 14px;
+  cursor:pointer;
+  text-align:center;
+  transition: all .25s;
+  position:relative; overflow:hidden;
+}
+.style-btn:hover { border-color:rgba(255,100,0,0.40); background:rgba(255,77,0,0.07); }
+.style-btn.active {
+  border-color:var(--fire);
+  background:rgba(255,77,0,0.12);
+  box-shadow:0 0 20px rgba(255,77,0,0.12);
+}
+.style-btn .sicon { font-size:1.7rem; display:block; margin-bottom:6px; }
+.style-btn .stitle {
+  font-family:'Rajdhani', sans-serif;
+  font-size:1rem; font-weight:700; letter-spacing:1px;
+  color:#fff; text-transform:uppercase;
+}
+.style-btn .sdesc { font-size:0.75rem; color:var(--muted); margin-top:3px; }
+.style-btn.active .stitle { color:var(--amber); }
+.style-btn::before {
+  content:''; position:absolute; inset:0;
+  background:linear-gradient(135deg,rgba(255,77,0,0.06),transparent);
+  opacity:0; transition:opacity .3s;
+}
+.style-btn.active::before { opacity:1; }
+
+/* ── BUTTON ── */
+.btn-gen {
+  width:100%;
+  padding:17px;
+  font-family:'Rajdhani', sans-serif;
+  font-size:1.15rem; font-weight:700; letter-spacing:2.5px;
+  text-transform:uppercase;
+  border:none; border-radius:14px;
+  cursor:pointer;
+  position:relative; overflow:hidden;
+  color:#0b0c0f;
+  background: linear-gradient(100deg, #ff5500 0%, #ffb800 60%, #ffd060 100%);
+  background-size:200%;
+  transition: all .35s;
+  box-shadow: 0 8px 40px rgba(255,77,0,0.25), 0 2px 0 rgba(255,255,255,0.08) inset;
+}
+.btn-gen:hover {
+  transform:translateY(-2px);
+  box-shadow:0 12px 50px rgba(255,77,0,0.38), 0 2px 0 rgba(255,255,255,0.10) inset;
+  background-position:right;
+}
+.btn-gen:active { transform:translateY(0); }
+.btn-gen::after {
+  content:'';
+  position:absolute; top:0; left:-100%; width:60%; height:100%;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,0.18),transparent);
+  transition:left .5s;
+}
+.btn-gen:hover::after { left:140%; }
+
+/* ── RESULTS ── */
+#results { display:none; }
+#results.show { display:block; animation:riseUp .6s cubic-bezier(.22,1,.36,1); }
+@keyframes riseUp { from{opacity:0;transform:translateY(32px)} to{opacity:1;transform:none} }
+
+.result-header {
+  display:flex; align-items:center; gap:12px;
+  margin-bottom:24px;
+  padding-bottom:18px;
+  border-bottom:1px solid var(--border2);
+}
+.result-header .rh-icon { font-size:1.6rem; }
+.result-header .rh-text h2 {
+  font-family:'Rajdhani', sans-serif;
+  font-size:1.35rem; font-weight:700; letter-spacing:0.5px;
+  color:#fff;
+}
+.result-header .rh-text p { font-size:0.8rem; color:var(--muted); margin-top:2px; }
+.result-tag {
+  margin-left:auto;
+  background:rgba(0,220,100,0.12);
+  border:1px solid rgba(0,220,100,0.30);
+  color:#00e077;
+  font-family:'Rajdhani', sans-serif;
+  font-size:0.72rem; font-weight:700; letter-spacing:2px;
+  padding:4px 12px; border-radius:30px; text-transform:uppercase;
+}
+
+/* Sensitivity Grid */
+.sens-grid {
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:12px;
+  margin-bottom:24px;
+}
+.sens-card {
+  background: linear-gradient(135deg, rgba(255,255,255,0.03) 0%, rgba(255,100,0,0.04) 100%);
+  border:1px solid rgba(255,255,255,0.07);
+  border-radius:16px;
+  padding:16px 14px 14px;
+  position:relative; overflow:hidden;
+  transition:border-color .25s, transform .2s;
+}
+.sens-card:hover { border-color:rgba(255,100,0,0.30); transform:translateY(-2px); }
+.sens-card::before {
+  content:'';
+  position:absolute; top:0; left:0; right:0; height:2px;
+  background:linear-gradient(90deg, var(--fire), var(--amber));
+  opacity:0.5;
+}
+.sc-label {
+  font-size:0.72rem; font-weight:600; letter-spacing:1px;
+  color:var(--muted); text-transform:uppercase;
+  margin-bottom:10px;
+}
+.sc-val {
+  font-family:'JetBrains Mono', monospace;
+  font-size:2.1rem; font-weight:600;
+  color:#fff;
+  line-height:1;
+}
+.sc-val.cam { color:var(--amber); }
+.sc-badge {
+  font-size:0.65rem; color:var(--dim); margin-top:4px;
+  font-family:'JetBrains Mono', monospace; letter-spacing:0.5px;
+}
+
+/* Bar indicator */
+.sc-bar {
+  height:2px; margin-top:12px;
+  background:rgba(255,255,255,0.07);
+  border-radius:2px;
+  overflow:hidden;
+}
+.sc-bar-fill {
+  height:100%;
+  border-radius:2px;
+  background:linear-gradient(90deg, var(--fire), var(--amber));
+  transition:width 1s cubic-bezier(.22,1,.36,1);
+}
+
+/* ── ADJUST SECTION ── */
+.adjust-grid {
+  display:grid; grid-template-columns:1fr 1fr; gap:10px 24px;
+}
+.adj-row {
+  display:flex; flex-direction:column; gap:4px;
+  padding:12px 0;
+  border-bottom:1px solid rgba(255,255,255,0.05);
+}
+.adj-row:nth-child(odd):last-child,
+.adj-row:last-child { border-bottom:none; }
+.adj-key {
+  font-family:'Rajdhani', sans-serif;
+  font-size:0.85rem; font-weight:700; letter-spacing:1px;
+  color:var(--amber); text-transform:uppercase;
+}
+.adj-desc { font-size:0.82rem; color:var(--muted); line-height:1.5; }
+.adj-desc strong { color:#00e077; font-weight:600; }
+
+/* ── TIPS ── */
+.tips-list { list-style:none; padding:0; }
+.tips-list li {
+  display:flex; gap:12px; align-items:flex-start;
+  padding:10px 0;
+  border-bottom:1px solid rgba(255,255,255,0.04);
+  font-size:0.87rem; color:var(--muted); line-height:1.6;
+}
+.tips-list li:last-child { border-bottom:none; }
+.tips-list li .tip-num {
+  flex-shrink:0;
+  font-family:'JetBrains Mono', monospace;
+  font-size:0.68rem; font-weight:600;
+  color:var(--fire); letter-spacing:1px;
+  padding-top:3px;
+  min-width:22px;
+}
+.tips-list li strong { color:var(--text); font-weight:500; }
+
+/* ── FOOTER ── */
+.footer {
+  text-align:center; margin-top:32px;
+  font-size:0.7rem; letter-spacing:2px;
+  color:rgba(232,220,200,0.15);
+  text-transform:uppercase;
+}
+
+/* ── RESPONSIVE ── */
+@media(max-width:640px){
+  .form-grid { grid-template-columns:1fr; }
+  .form-group.span2 { grid-column:1; }
+  .sens-grid { grid-template-columns:1fr 1fr; }
+  .adjust-grid { grid-template-columns:1fr; }
+  h1 { font-size:2.1rem; }
+  .card { padding:22px 16px; }
+}
+@media(max-width:420px){
+  .sens-grid { grid-template-columns:1fr; }
+}
+</style>
+</head>
+<body>
+
+<div class="bg-grid"></div>
+<div class="bg-glow1"></div>
+<div class="bg-glow2"></div>
+
+<div class="wrap">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="badge">AKRIM EXE ⚡ Elite Edition</div>
+    <h1>FF <span class="fire-word">SENSITIVITY</span><br>GENERATOR</h1>
+    <p class="tagline">Paramètres sur mesure · Technologie de précision</p>
+  </div>
+
+  <hr class="divider"/>
+
+  <!-- FORM CARD -->
+  <div class="card">
+    <div class="section-label">01 · Configuration</div>
+
+    <div class="form-grid">
+      <div class="form-group span2">
+        <label><em>📱</em> Marque &amp; modèle du téléphone</label>
+        <input type="text" id="phone-model" placeholder="ex : Samsung Galaxy A54, iPhone 13, Xiaomi Redmi Note 12…" autocomplete="off"/>
+      </div>
+
+      <div class="form-group">
+        <label><em>🧠</em> RAM (Go)</label>
+        <div class="select-wrap">
+          <select id="ram-select">
+            <option value="">Sélectionne ta RAM</option>
+            <option value="2">2 Go</option>
+            <option value="3">3 Go</option>
+            <option value="4">4 Go</option>
+            <option value="6">6 Go</option>
+            <option value="8">8 Go</option>
+            <option value="10">10 Go</option>
+            <option value="12">12 Go</option>
+            <option value="16">16 Go ou +</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label><em>🖥️</em> Résolution / FPS cible</label>
+        <div class="select-wrap">
+          <select id="fps-select">
+            <option value="60">60 FPS (standard)</option>
+            <option value="90">90 FPS (élevé)</option>
+            <option value="120">120 FPS (pro)</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-label">02 · Style de jeu</div>
+
+    <div class="style-picker" id="style-picker">
+      <button type="button" class="style-btn" data-val="rush">
+        <span class="sicon">🚀</span>
+        <div class="stitle">Rush</div>
+        <div class="sdesc">Rapide · Agressif · CQB</div>
+      </button>
+      <button type="button" class="style-btn" data-val="fusilier">
+        <span class="sicon">🎯</span>
+        <div class="stitle">Fusilier</div>
+        <div class="sdesc">Précis · Posé · Long range</div>
+      </button>
+    </div>
+
+    <input type="hidden" id="play-style" value=""/>
+
+    <br/>
+    <button class="btn-gen" id="btn-gen" onclick="generate()">⚡ Générer ma sensibilité PRO</button>
+  </div>
+
+  <!-- RESULTS -->
+  <div id="results">
+    <div class="card">
+      <div class="result-header">
+        <div class="rh-icon">🔥</div>
+        <div class="rh-text">
+          <h2>Sensibilité générée</h2>
+          <p id="result-sub">Optimisée pour ton appareil et ton style</p>
+        </div>
+        <div class="result-tag">✓ Actif</div>
+      </div>
+
+      <div class="sens-grid">
+        <div class="sens-card">
+          <div class="sc-label">🎯 Générale</div>
+          <div class="sc-val" id="v-general">--</div>
+          <div class="sc-badge">/ 200</div>
+          <div class="sc-bar"><div class="sc-bar-fill" id="b-general" style="width:0%"></div></div>
+        </div>
+        <div class="sens-card">
+          <div class="sc-label">🔴 Point Rouge</div>
+          <div class="sc-val" id="v-reddot">--</div>
+          <div class="sc-badge">/ 200</div>
+          <div class="sc-bar"><div class="sc-bar-fill" id="b-reddot" style="width:0%"></div></div>
+        </div>
+        <div class="sens-card">
+          <div class="sc-label">🔭 Lunette 2x</div>
+          <div class="sc-val" id="v-2x">--</div>
+          <div class="sc-badge">/ 200</div>
+          <div class="sc-bar"><div class="sc-bar-fill" id="b-2x" style="width:0%"></div></div>
+        </div>
+        <div class="sens-card">
+          <div class="sc-label">🔭 Lunette 4x</div>
+          <div class="sc-val" id="v-4x">--</div>
+          <div class="sc-badge">/ 200</div>
+          <div class="sc-bar"><div class="sc-bar-fill" id="b-4x" style="width:0%"></div></div>
+        </div>
+        <div class="sens-card">
+          <div class="sc-label">🎯 AWM Sniper</div>
+          <div class="sc-val" id="v-sniper">--</div>
+          <div class="sc-badge">/ 200</div>
+          <div class="sc-bar"><div class="sc-bar-fill" id="b-sniper" style="width:0%"></div></div>
+        </div>
+        <div class="sens-card">
+          <div class="sc-label">👁️ Caméra libre</div>
+          <div class="sc-val cam" id="v-camera">--</div>
+          <div class="sc-badge">/ 100</div>
+          <div class="sc-bar"><div class="sc-bar-fill" id="b-camera" style="width:0%"></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ADJUST GUIDE -->
+    <div class="card">
+      <div class="section-label">03 · Guide d'ajustement</div>
+      <div class="adjust-grid">
+        <div class="adj-row">
+          <div class="adj-key">Générale</div>
+          <div class="adj-desc">Vitesse hors-visée. Rush → haute. Si tu dépasses, <strong>baisse de 5</strong>.</div>
+        </div>
+        <div class="adj-row">
+          <div class="adj-key">Point Rouge</div>
+          <div class="adj-desc">CQB et mid-range. Ajuste jusqu'à <strong>viser naturellement</strong>.</div>
+        </div>
+        <div class="adj-row">
+          <div class="adj-key">Lunette 2x / 4x</div>
+          <div class="adj-desc">Distance moyenne. <strong>Moins haute</strong> = micro-corrections possibles.</div>
+        </div>
+        <div class="adj-row">
+          <div class="adj-key">AWM Sniper</div>
+          <div class="adj-desc">Très basse pour <strong>micro-ajustement</strong> longue distance. Ne monte pas trop.</div>
+        </div>
+        <div class="adj-row">
+          <div class="adj-key">Caméra libre</div>
+          <div class="adj-desc">Scan du champ sans bouger. <strong>Max 100</strong>, jamais au-dessus.</div>
+        </div>
+        <div class="adj-row">
+          <div class="adj-key">Règle d'or</div>
+          <div class="adj-desc">Touche <strong>un seul curseur</strong> à la fois. Teste en entraînement 15 min avant de rejuger.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TIPS -->
+    <div class="card">
+      <div class="section-label">04 · Conseils Pro</div>
+      <ul class="tips-list">
+        <li>
+          <span class="tip-num">01</span>
+          <span>Joue <strong>30 minutes en mode entraînement</strong> avec tes nouvelles valeurs avant de juger. Le muscle mémoriel a besoin de temps pour s'adapter.</span>
+        </li>
+        <li>
+          <span class="tip-num">02</span>
+          <span>Si tu joues en <strong>Rush</strong>, monte la Générale par paliers de <strong>+10</strong> tant que tu ne dépasses pas tes cibles. Descends par <strong>-5</strong> si tu overshootes.</span>
+        </li>
+        <li>
+          <span class="tip-num">03</span>
+          <span>En <strong>Fusilier</strong>, priorise la stabilité des lunettes (2x/4x). Une valeur trop haute t'empêchera de faire du spray précis à distance.</span>
+        </li>
+        <li>
+          <span class="tip-num">04</span>
+          <span>La <strong>Caméra libre</strong> à 100 max — dépasser cette valeur crée un mouvement de caméra incontrôlable qui ralentit la rotation du personnage.</span>
+        </li>
+        <li>
+          <span class="tip-num">05</span>
+          <span>La sensibilité idéale est celle avec laquelle tu <strong>ne penses plus</strong> à ta sensibilité. Si tu y penses en jeu, continue d'ajuster.</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer">FREE FIRE SENSITIVITY PRO · Elite v3.0 · 2026</div>
+</div>
+
+<script>
+// Style picker
+const btns = document.querySelectorAll('.style-btn');
+const psInput = document.getElementById('play-style');
+
+btns.forEach(b => {
+  b.addEventListener('click', () => {
+    btns.forEach(x => x.classList.remove('active'));
+    b.classList.add('active');
+    psInput.value = b.dataset.val;
+  });
+});
+
+// Algorithm
+function calcSens(phone, ram, fps, style) {
+  // RAM factor
+  let rf = ram <= 2 ? 0.72 : ram <= 4 ? 0.82 : ram <= 6 ? 0.95 : ram <= 8 ? 1.10 : 1.22;
+
+  // FPS factor (higher FPS = slightly lower sens needed for same perceived speed)
+  let ff = fps === 120 ? 0.92 : fps === 90 ? 0.96 : 1.0;
+
+  // Brand factor
+  const m = phone.toLowerCase();
+  let bf = 0;
+  if (m.includes('iphone') || m.includes('apple')) bf = 8;
+  else if (m.includes('samsung') || m.includes('galaxy')) bf = 3;
+  else if (m.includes('oneplus')) bf = 6;
+  else if (m.includes('xiaomi') || m.includes('redmi') || m.includes('poco')) bf = -2;
+  else if (m.includes('oppo') || m.includes('vivo')) bf = -1;
+  else if (m.includes('pixel') || m.includes('google')) bf = 4;
+  else if (m.includes('asus') || m.includes('rog')) bf = 7;
+
+  const rush = style === 'rush';
+
+  const base = {
+    general: rush ? 158 : 112,
+    reddot:  rush ? 128 : 80,
+    scope2x: rush ? 98  : 60,
+    scope4x: rush ? 72  : 46,
+    sniper:  rush ? 52  : 33,
+    camera:  rush ? 82  : 55
+  };
+
+  const result = {};
+  for (const k in base) {
+    let v = Math.round(base[k] * rf * ff + bf * 0.5);
+    if (k === 'general') v = Math.max(99, Math.min(200, v));
+    else if (k === 'camera') v = Math.max(30, Math.min(100, v));
+    else v = Math.max(20, Math.min(200, v));
+    result[k] = v;
+  }
+  return result;
+}
+
+function setVal(id, barId, val, max) {
+  const el = document.getElementById(id);
+  const bar = document.getElementById(barId);
+  // count up animation
+  const duration = 900;
+  const start = performance.now();
+  function step(now) {
+    const t = Math.min((now - start) / duration, 1);
+    const eased = 1 - Math.pow(1 - t, 3);
+    el.textContent = Math.round(eased * val);
+    bar.style.width = (eased * val / max * 100) + '%';
+    if (t < 1) requestAnimationFrame(step);
+    else el.textContent = val;
+  }
+  requestAnimationFrame(step);
+}
+
+function generate() {
+  const phone = document.getElementById('phone-model').value.trim();
+  const ram   = parseInt(document.getElementById('ram-select').value || '0');
+  const fps   = parseInt(document.getElementById('fps-select').value || '60');
+  const style = document.getElementById('play-style').value;
+
+  if (!phone) { shake('phone-model'); return; }
+  if (!ram)   { shake('ram-select');  return; }
+  if (!style) { shakeEl(document.getElementById('style-picker')); return; }
+
+  const s = calcSens(phone, ram, fps, style);
+
+  // Sub text
+  const styleName = style === 'rush' ? 'Rush 🚀' : 'Fusilier 🎯';
+  document.getElementById('result-sub').textContent =
+    `${phone} · ${ram} Go RAM · ${fps} FPS · ${styleName}`;
+
+  // Show results
+  const res = document.getElementById('results');
+  res.classList.add('show');
+
+  // Set values with animation (slight delays)
+  setTimeout(() => setVal('v-general', 'b-general', s.general, 200), 50);
+  setTimeout(() => setVal('v-reddot',  'b-reddot',  s.reddot,  200), 120);
+  setTimeout(() => setVal('v-2x',      'b-2x',      s.scope2x, 200), 190);
+  setTimeout(() => setVal('v-4x',      'b-4x',      s.scope4x, 200), 260);
+  setTimeout(() => setVal('v-sniper',  'b-sniper',  s.sniper,  200), 330);
+  setTimeout(() => setVal('v-camera',  'b-camera',  s.camera,  100), 400);
+
+  res.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function shake(id) {
+  const el = document.getElementById(id);
+  el.style.animation = 'none';
+  el.style.borderColor = 'rgba(255,60,60,0.7)';
+  el.style.boxShadow = '0 0 0 3px rgba(255,60,60,0.18)';
+  setTimeout(() => {
+    el.style.borderColor = '';
+    el.style.boxShadow = '';
+  }, 1400);
+  el.focus();
+}
+
+function shakeEl(el) {
+  el.style.outline = '2px solid rgba(255,60,60,0.5)';
+  el.style.borderRadius = '14px';
+  setTimeout(() => { el.style.outline = ''; }, 1400);
+}
+</script>
+</body>
+</html>
